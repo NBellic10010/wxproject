@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wx.client.GamesMapper">
+  <resultMap id="BaseResultMap" type="com.wx.mappers.Games">
+    <id column="GAME_ID" jdbcType="INTEGER" property="gameId" />
+    <id column="GAME_NAME" jdbcType="VARCHAR" property="gameName" />
+    <id column="GAME_NAME_ENG" jdbcType="VARCHAR" property="gameNameEng" />
+    <result column="STEAM_LINK" jdbcType="VARCHAR" property="steamLink" />
+    <result column="GAME_STATUS" jdbcType="BIT" property="gameStatus" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wx.mappers.Games">
+    <result column="GAME_INTRO" jdbcType="LONGVARCHAR" property="gameIntro" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GAME_ID, GAME_NAME, GAME_NAME_ENG, STEAM_LINK, GAME_STATUS, UPDATE_DATE
+  </sql>
+  <sql id="Blob_Column_List">
+    GAME_INTRO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.wx.mappers.GamesKey" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from games
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and GAME_NAME = #{gameName,jdbcType=VARCHAR}
+      and GAME_NAME_ENG = #{gameNameEng,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.wx.mappers.GamesKey">
+    delete from games
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and GAME_NAME = #{gameName,jdbcType=VARCHAR}
+      and GAME_NAME_ENG = #{gameNameEng,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wx.mappers.Games">
+    insert into games (GAME_ID, GAME_NAME, GAME_NAME_ENG, 
+      STEAM_LINK, GAME_STATUS, UPDATE_DATE, 
+      GAME_INTRO)
+    values (#{gameId,jdbcType=INTEGER}, #{gameName,jdbcType=VARCHAR}, #{gameNameEng,jdbcType=VARCHAR}, 
+      #{steamLink,jdbcType=VARCHAR}, #{gameStatus,jdbcType=BIT}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{gameIntro,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wx.mappers.Games">
+    insert into games
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        GAME_ID,
+      </if>
+      <if test="gameName != null">
+        GAME_NAME,
+      </if>
+      <if test="gameNameEng != null">
+        GAME_NAME_ENG,
+      </if>
+      <if test="steamLink != null">
+        STEAM_LINK,
+      </if>
+      <if test="gameStatus != null">
+        GAME_STATUS,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="gameIntro != null">
+        GAME_INTRO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameNameEng != null">
+        #{gameNameEng,jdbcType=VARCHAR},
+      </if>
+      <if test="steamLink != null">
+        #{steamLink,jdbcType=VARCHAR},
+      </if>
+      <if test="gameStatus != null">
+        #{gameStatus,jdbcType=BIT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameIntro != null">
+        #{gameIntro,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.mappers.Games">
+    update games
+    <set>
+      <if test="steamLink != null">
+        STEAM_LINK = #{steamLink,jdbcType=VARCHAR},
+      </if>
+      <if test="gameStatus != null">
+        GAME_STATUS = #{gameStatus,jdbcType=BIT},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameIntro != null">
+        GAME_INTRO = #{gameIntro,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and GAME_NAME = #{gameName,jdbcType=VARCHAR}
+      and GAME_NAME_ENG = #{gameNameEng,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wx.mappers.Games">
+    update games
+    set STEAM_LINK = #{steamLink,jdbcType=VARCHAR},
+      GAME_STATUS = #{gameStatus,jdbcType=BIT},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      GAME_INTRO = #{gameIntro,jdbcType=LONGVARCHAR}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and GAME_NAME = #{gameName,jdbcType=VARCHAR}
+      and GAME_NAME_ENG = #{gameNameEng,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wx.mappers.Games">
+    update games
+    set STEAM_LINK = #{steamLink,jdbcType=VARCHAR},
+      GAME_STATUS = #{gameStatus,jdbcType=BIT},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and GAME_NAME = #{gameName,jdbcType=VARCHAR}
+      and GAME_NAME_ENG = #{gameNameEng,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.wx.mappers.Games">
+    <id column="GAME_ID" jdbcType="INTEGER" property="gameId" />
+    <result column="STEAM_LINK" jdbcType="VARCHAR" property="steamLink" />
+    <result column="GAME_STATUS" jdbcType="BIT" property="gameStatus" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="GAME_NAME" jdbcType="VARCHAR" property="gameName" />
+    <result column="GAME_NAME_ENG" jdbcType="VARCHAR" property="gameNameEng" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wx.mappers.Games">
+    <result column="GAME_INTRO" jdbcType="LONGVARCHAR" property="gameIntro" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GAME_ID, STEAM_LINK, GAME_STATUS, UPDATE_DATE, GAME_NAME, GAME_NAME_ENG
+  </sql>
+  <sql id="Blob_Column_List">
+    GAME_INTRO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from games
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from games
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wx.mappers.Games">
+    insert into games (GAME_ID, STEAM_LINK, GAME_STATUS, 
+      UPDATE_DATE, GAME_NAME, GAME_NAME_ENG, 
+      GAME_INTRO)
+    values (#{gameId,jdbcType=INTEGER}, #{steamLink,jdbcType=VARCHAR}, #{gameStatus,jdbcType=BIT}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{gameName,jdbcType=VARCHAR}, #{gameNameEng,jdbcType=VARCHAR}, 
+      #{gameIntro,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wx.mappers.Games">
+    insert into games
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        GAME_ID,
+      </if>
+      <if test="steamLink != null">
+        STEAM_LINK,
+      </if>
+      <if test="gameStatus != null">
+        GAME_STATUS,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="gameName != null">
+        GAME_NAME,
+      </if>
+      <if test="gameNameEng != null">
+        GAME_NAME_ENG,
+      </if>
+      <if test="gameIntro != null">
+        GAME_INTRO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="steamLink != null">
+        #{steamLink,jdbcType=VARCHAR},
+      </if>
+      <if test="gameStatus != null">
+        #{gameStatus,jdbcType=BIT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameNameEng != null">
+        #{gameNameEng,jdbcType=VARCHAR},
+      </if>
+      <if test="gameIntro != null">
+        #{gameIntro,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.mappers.Games">
+    update games
+    <set>
+      <if test="steamLink != null">
+        STEAM_LINK = #{steamLink,jdbcType=VARCHAR},
+      </if>
+      <if test="gameStatus != null">
+        GAME_STATUS = #{gameStatus,jdbcType=BIT},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameName != null">
+        GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameNameEng != null">
+        GAME_NAME_ENG = #{gameNameEng,jdbcType=VARCHAR},
+      </if>
+      <if test="gameIntro != null">
+        GAME_INTRO = #{gameIntro,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wx.mappers.Games">
+    update games
+    set STEAM_LINK = #{steamLink,jdbcType=VARCHAR},
+      GAME_STATUS = #{gameStatus,jdbcType=BIT},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      GAME_NAME_ENG = #{gameNameEng,jdbcType=VARCHAR},
+      GAME_INTRO = #{gameIntro,jdbcType=LONGVARCHAR}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wx.mappers.Games">
+    update games
+    set STEAM_LINK = #{steamLink,jdbcType=VARCHAR},
+      GAME_STATUS = #{gameStatus,jdbcType=BIT},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      GAME_NAME_ENG = #{gameNameEng,jdbcType=VARCHAR}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.wx.mappers.Games">
+    <id column="GAME_ID" jdbcType="INTEGER" property="gameId" />
+    <result column="STEAM_LINK" jdbcType="VARCHAR" property="steamLink" />
+    <result column="GAME_STATUS" jdbcType="BIT" property="gameStatus" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="GAME_NAME" jdbcType="VARCHAR" property="gameName" />
+    <result column="GAME_NAME_ENG" jdbcType="VARCHAR" property="gameNameEng" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wx.mappers.Games">
+    <result column="GAME_INTRO" jdbcType="LONGVARCHAR" property="gameIntro" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GAME_ID, STEAM_LINK, GAME_STATUS, UPDATE_DATE, GAME_NAME, GAME_NAME_ENG
+  </sql>
+  <sql id="Blob_Column_List">
+    GAME_INTRO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from games
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from games
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wx.mappers.Games">
+    insert into games (GAME_ID, STEAM_LINK, GAME_STATUS, 
+      UPDATE_DATE, GAME_NAME, GAME_NAME_ENG, 
+      GAME_INTRO)
+    values (#{gameId,jdbcType=INTEGER}, #{steamLink,jdbcType=VARCHAR}, #{gameStatus,jdbcType=BIT}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{gameName,jdbcType=VARCHAR}, #{gameNameEng,jdbcType=VARCHAR}, 
+      #{gameIntro,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wx.mappers.Games">
+    insert into games
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        GAME_ID,
+      </if>
+      <if test="steamLink != null">
+        STEAM_LINK,
+      </if>
+      <if test="gameStatus != null">
+        GAME_STATUS,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="gameName != null">
+        GAME_NAME,
+      </if>
+      <if test="gameNameEng != null">
+        GAME_NAME_ENG,
+      </if>
+      <if test="gameIntro != null">
+        GAME_INTRO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="steamLink != null">
+        #{steamLink,jdbcType=VARCHAR},
+      </if>
+      <if test="gameStatus != null">
+        #{gameStatus,jdbcType=BIT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameNameEng != null">
+        #{gameNameEng,jdbcType=VARCHAR},
+      </if>
+      <if test="gameIntro != null">
+        #{gameIntro,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.mappers.Games">
+    update games
+    <set>
+      <if test="steamLink != null">
+        STEAM_LINK = #{steamLink,jdbcType=VARCHAR},
+      </if>
+      <if test="gameStatus != null">
+        GAME_STATUS = #{gameStatus,jdbcType=BIT},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameName != null">
+        GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameNameEng != null">
+        GAME_NAME_ENG = #{gameNameEng,jdbcType=VARCHAR},
+      </if>
+      <if test="gameIntro != null">
+        GAME_INTRO = #{gameIntro,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wx.mappers.Games">
+    update games
+    set STEAM_LINK = #{steamLink,jdbcType=VARCHAR},
+      GAME_STATUS = #{gameStatus,jdbcType=BIT},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      GAME_NAME_ENG = #{gameNameEng,jdbcType=VARCHAR},
+      GAME_INTRO = #{gameIntro,jdbcType=LONGVARCHAR}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wx.mappers.Games">
+    update games
+    set STEAM_LINK = #{steamLink,jdbcType=VARCHAR},
+      GAME_STATUS = #{gameStatus,jdbcType=BIT},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      GAME_NAME_ENG = #{gameNameEng,jdbcType=VARCHAR}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </update>
+
+</mapper>

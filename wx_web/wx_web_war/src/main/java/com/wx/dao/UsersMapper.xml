@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wx.client.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.wx.mappers.Users">
+    <id column="OPEN_ID" jdbcType="INTEGER" property="openId" />
+    <result column="USER_STATUS" jdbcType="BIT" property="userStatus" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wx.mappers.Users">
+    <result column="PROFILE_PIC" jdbcType="LONGVARBINARY" property="profilePic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    OPEN_ID, USER_STATUS, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <sql id="Blob_Column_List">
+    PROFILE_PIC
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from users
+    where OPEN_ID = #{openId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from users
+    where OPEN_ID = #{openId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wx.mappers.Users">
+    insert into users (OPEN_ID, USER_STATUS, CREATE_DATE, 
+      UPDATE_DATE, PROFILE_PIC)
+    values (#{openId,jdbcType=INTEGER}, #{userStatus,jdbcType=BIT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{profilePic,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wx.mappers.Users">
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="openId != null">
+        OPEN_ID,
+      </if>
+      <if test="userStatus != null">
+        USER_STATUS,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="profilePic != null">
+        PROFILE_PIC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="openId != null">
+        #{openId,jdbcType=INTEGER},
+      </if>
+      <if test="userStatus != null">
+        #{userStatus,jdbcType=BIT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="profilePic != null">
+        #{profilePic,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.mappers.Users">
+    update users
+    <set>
+      <if test="userStatus != null">
+        USER_STATUS = #{userStatus,jdbcType=BIT},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="profilePic != null">
+        PROFILE_PIC = #{profilePic,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where OPEN_ID = #{openId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wx.mappers.Users">
+    update users
+    set USER_STATUS = #{userStatus,jdbcType=BIT},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      PROFILE_PIC = #{profilePic,jdbcType=LONGVARBINARY}
+    where OPEN_ID = #{openId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wx.mappers.Users">
+    update users
+    set USER_STATUS = #{userStatus,jdbcType=BIT},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where OPEN_ID = #{openId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.wx.mappers.Users">
+    <id column="OPEN_ID" jdbcType="INTEGER" property="openId" />
+    <result column="USER_STATUS" jdbcType="BIT" property="userStatus" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.wx.mappers.Users">
+    <result column="PROFILE_PIC" jdbcType="LONGVARBINARY" property="profilePic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    OPEN_ID, USER_STATUS, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <sql id="Blob_Column_List">
+    PROFILE_PIC
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from users
+    where OPEN_ID = #{openId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from users
+    where OPEN_ID = #{openId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wx.mappers.Users">
+    insert into users (OPEN_ID, USER_STATUS, CREATE_DATE, 
+      UPDATE_DATE, PROFILE_PIC)
+    values (#{openId,jdbcType=INTEGER}, #{userStatus,jdbcType=BIT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{profilePic,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wx.mappers.Users">
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="openId != null">
+        OPEN_ID,
+      </if>
+      <if test="userStatus != null">
+        USER_STATUS,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="profilePic != null">
+        PROFILE_PIC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="openId != null">
+        #{openId,jdbcType=INTEGER},
+      </if>
+      <if test="userStatus != null">
+        #{userStatus,jdbcType=BIT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="profilePic != null">
+        #{profilePic,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.mappers.Users">
+    update users
+    <set>
+      <if test="userStatus != null">
+        USER_STATUS = #{userStatus,jdbcType=BIT},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="profilePic != null">
+        PROFILE_PIC = #{profilePic,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where OPEN_ID = #{openId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wx.mappers.Users">
+    update users
+    set USER_STATUS = #{userStatus,jdbcType=BIT},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      PROFILE_PIC = #{profilePic,jdbcType=LONGVARBINARY}
+    where OPEN_ID = #{openId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wx.mappers.Users">
+    update users
+    set USER_STATUS = #{userStatus,jdbcType=BIT},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where OPEN_ID = #{openId,jdbcType=INTEGER}
+  </update>
+</mapper>

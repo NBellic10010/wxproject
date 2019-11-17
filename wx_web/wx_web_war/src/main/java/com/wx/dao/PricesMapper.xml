@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wx.client.PricesMapper">
+  <resultMap id="BaseResultMap" type="com.wx.mappers.Prices">
+    <id column="GAME_ID" jdbcType="INTEGER" property="gameId" />
+    <id column="DATE" jdbcType="TIMESTAMP" property="date" />
+    <result column="PRICE" jdbcType="INTEGER" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GAME_ID, DATE, PRICE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.wx.mappers.PricesKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prices
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.wx.mappers.PricesKey">
+    delete from prices
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="com.wx.mappers.Prices">
+    insert into prices (GAME_ID, DATE, PRICE
+      )
+    values (#{gameId,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{price,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wx.mappers.Prices">
+    insert into prices
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        GAME_ID,
+      </if>
+      <if test="date != null">
+        DATE,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.mappers.Prices">
+    update prices
+    <set>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=INTEGER},
+      </if>
+    </set>
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wx.mappers.Prices">
+    update prices
+    set PRICE = #{price,jdbcType=INTEGER}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </update>
+  <resultMap id="BaseResultMap" type="com.wx.mappers.Prices">
+    <id column="GAME_ID" jdbcType="INTEGER" property="gameId" />
+    <id column="DATE" jdbcType="TIMESTAMP" property="date" />
+    <result column="GAME_NAME" jdbcType="VARCHAR" property="gameName" />
+    <result column="PRICE" jdbcType="INTEGER" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GAME_ID, DATE, GAME_NAME, PRICE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.wx.mappers.PricesKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prices
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.wx.mappers.PricesKey">
+    delete from prices
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="com.wx.mappers.Prices">
+    insert into prices (GAME_ID, DATE, GAME_NAME, 
+      PRICE)
+    values (#{gameId,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{gameName,jdbcType=VARCHAR}, 
+      #{price,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wx.mappers.Prices">
+    insert into prices
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        GAME_ID,
+      </if>
+      <if test="date != null">
+        DATE,
+      </if>
+      <if test="gameName != null">
+        GAME_NAME,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.mappers.Prices">
+    update prices
+    <set>
+      <if test="gameName != null">
+        GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=INTEGER},
+      </if>
+    </set>
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wx.mappers.Prices">
+    update prices
+    set GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=INTEGER}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </update>
+  <resultMap id="BaseResultMap" type="com.wx.mappers.Prices">
+    <id column="GAME_ID" jdbcType="INTEGER" property="gameId" />
+    <result column="GAME_NAME" jdbcType="VARCHAR" property="gameName" />
+    <result column="PRICE" jdbcType="INTEGER" property="price" />
+    <result column="DATE" jdbcType="TIMESTAMP" property="date" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GAME_ID, GAME_NAME, PRICE, DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prices
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prices
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wx.mappers.Prices">
+    insert into prices (GAME_ID, GAME_NAME, PRICE, 
+      DATE)
+    values (#{gameId,jdbcType=INTEGER}, #{gameName,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{date,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wx.mappers.Prices">
+    insert into prices
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        GAME_ID,
+      </if>
+      <if test="gameName != null">
+        GAME_NAME,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="date != null">
+        DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.mappers.Prices">
+    update prices
+    <set>
+      <if test="gameName != null">
+        GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        DATE = #{date,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wx.mappers.Prices">
+    update prices
+    set GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=INTEGER},
+      DATE = #{date,jdbcType=TIMESTAMP}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.wx.mappers.Prices">
+    <id column="GAME_ID" jdbcType="INTEGER" property="gameId" />
+    <id column="DATE" jdbcType="TIMESTAMP" property="date" />
+    <result column="GAME_NAME" jdbcType="VARCHAR" property="gameName" />
+    <result column="PRICE" jdbcType="INTEGER" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GAME_ID, DATE, GAME_NAME, PRICE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.wx.mappers.PricesKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prices
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.wx.mappers.PricesKey">
+    delete from prices
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="com.wx.mappers.Prices">
+    insert into prices (GAME_ID, DATE, GAME_NAME, 
+      PRICE)
+    values (#{gameId,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{gameName,jdbcType=VARCHAR}, 
+      #{price,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wx.mappers.Prices">
+    insert into prices
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        GAME_ID,
+      </if>
+      <if test="date != null">
+        DATE,
+      </if>
+      <if test="gameName != null">
+        GAME_NAME,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.mappers.Prices">
+    update prices
+    <set>
+      <if test="gameName != null">
+        GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=INTEGER},
+      </if>
+    </set>
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wx.mappers.Prices">
+    update prices
+    set GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=INTEGER}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </update>
+  <resultMap id="BaseResultMap" type="com.wx.mappers.Prices">
+    <id column="GAME_ID" jdbcType="INTEGER" property="gameId" />
+    <id column="DATE" jdbcType="TIMESTAMP" property="date" />
+    <result column="GAME_NAME" jdbcType="VARCHAR" property="gameName" />
+    <result column="PRICE" jdbcType="INTEGER" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GAME_ID, DATE, GAME_NAME, PRICE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.wx.mappers.PricesKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prices
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.wx.mappers.PricesKey">
+    delete from prices
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="com.wx.mappers.Prices">
+    insert into prices (GAME_ID, DATE, GAME_NAME, 
+      PRICE)
+    values (#{gameId,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{gameName,jdbcType=VARCHAR}, 
+      #{price,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wx.mappers.Prices">
+    insert into prices
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        GAME_ID,
+      </if>
+      <if test="date != null">
+        DATE,
+      </if>
+      <if test="gameName != null">
+        GAME_NAME,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wx.mappers.Prices">
+    update prices
+    <set>
+      <if test="gameName != null">
+        GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=INTEGER},
+      </if>
+    </set>
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wx.mappers.Prices">
+    update prices
+    set GAME_NAME = #{gameName,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=INTEGER}
+    where GAME_ID = #{gameId,jdbcType=INTEGER}
+      and DATE = #{date,jdbcType=TIMESTAMP}
+  </update>
+  <select id="selectByGameId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from price where GAME_ID = #{gameId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByDate" parameterType="java.util.Date">
+    delete from price where DATE = #{date,jdbcType=DATE}
+  </delete>
+</mapper>
